@@ -865,3 +865,22 @@ footer {
     gap: 16px;
   }
 }
+
+.soc.leetcode {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 800
+}
+
+.soc.gfg {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 800
+}
+
+.soc:hover {
+  background: #ffb84d;
+  color: #1a1a1a;
+  box-shadow: 0 0 18px rgba(255, 161, 22, 0.45);
+  transform: translateY(-3px);
+}
