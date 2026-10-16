@@ -19,10 +19,11 @@ const techGroups = [
   { name: 'Tools & Platforms', items: [['Git', '240,80,50', 'git'], ['GitHub', '150,150,170', 'github'], ['Docker', '40,140,230', 'docker'], ['Jenkins', '200,70,60', 'jenkins'], ['Jupyter', '230,120,40', 'jupyter']] },
 ];
 const projects = [
+  { title: 'Event Management System', description: 'A team-built event management system with role-based access for students, faculty, organizers, and admins, backed by an Express API and MongoDB. The project also includes DevOps workflow practice.', tags: ['Node.js', 'Express', 'MongoDB', 'Docker', 'Jenkins'] },
   { title: 'ECG Noise Analyzer', description: 'A web app that classifies ECG segments as clean or noisy and predicts noise categories. Uses continuous wavelet transform scalograms with deep-learning inference; it is a signal-quality tool, not a heart-disease diagnosis system.', tags: ['PyTorch', 'ResNet-18', '1D CNN', 'CWT', 'React', 'FastAPI'] },
   { title: 'Student Score Predictor', description: 'A Streamlit machine-learning application using linear regression to estimate student scores from input features, with model evaluation and a simple interactive interface.', tags: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'] },
-  { title: 'Event Management System', description: 'A team-built event management system with role-based access for students, faculty, organizers, and admins, backed by an Express API and MongoDB. The project also includes DevOps workflow practice.', tags: ['Node.js', 'Express', 'MongoDB', 'Docker', 'Jenkins'] },
-  { title: 'Research-led Learning', description: 'I study deep-learning papers and build understanding of the model choices, preprocessing, and evaluation methods behind applied AI projects.', tags: ['Deep Learning', 'Research Papers', 'Model Evaluation'] },
+  { title: 'Vehicle Service Booking', description: 'A web-based application designed to simplify vehicle maintenance by allowing users to book service appointments online. Users can explore available services, schedule appointments, manage their bookings, and access service-related information through a user-friendly interface.', tags: ['HTML', 'CSS', 'JavaScript', 'XAMPP','Render']},
+  { title: 'Heart Disease Prediction', description: 'A machine learning project that analyzes patient health parameters to predict the likelihood of heart disease. The model uses data preprocessing, feature analysis, and classification algorithms to generate predictions based on the provided medical attributes.', tags: ['Machine Learning', 'SVM', 'Random Forest','Logistic Regression'] },
 ];
 
 function Starfield() {
@@ -85,6 +86,8 @@ function Hero() {
         <a className="btn teal" href="#projects">Explore Projects</a>
         <a className="soc" href="https://github.com/YashChandiramani" target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
         <a className="soc linkedin" href="https://www.linkedin.com/in/yash-chandiramani-589699352/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+        <a className="soc leetcode" href="https://leetcode.com/u/Yash_Chandiramani/" target="_blank" rel="noreferrer" aria-label="LeetCode">LC</a>
+        <a className="soc gfg" href="https://www.geeksforgeeks.org/profile/b240r779" target="_blank" rel="noreferrer" aria-label="LeetCode">GFG</a>
       </div>
     </div>
     <div className="photo-wrap">
@@ -115,16 +118,19 @@ function Projects() {
     <div className="section-heading reveal"><span className="eyebrow">A selection of things I’ve built</span><h2 className="display section-title">Projects</h2><p className="section-intro">Experiments, applications, and ideas turned into working projects.</p></div>
     <div className="project-grid">
       {projects.map((project, index) => <article className={`project-card reveal reveal-delay-${index % 3}`} key={project.title}>
-        <div className={`project-visual project-visual-${index + 1}`}><span className="visual-label">PROJECT / 0{index + 1}</span><span className="visual-mark">{['ECG', 'ML', 'EV', 'AI'][index]}</span></div>
+        <div className={`project-visual project-visual-${index + 1}`}><span className="visual-label">PROJECT / 0{index + 1}</span><span className="visual-mark">{['FSD', 'DL', 'ML', 'FSD', 'ML'][index]}</span></div>
         <div className="project-card-content"><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div>
       </article>)}
     </div>
   </section>;
 }
 const experienceItems = [
-  { role: 'AI/ML Summer Intern', place: 'MNIT Jaipur · MIIC', date: 'May – June 2026', text: 'Participated in the summer internship programme with an AI/ML healthcare focus, in the AAMIH / Svaarogym project context.', tags: ['Machine Learning', 'Healthcare AI', 'Research'] },
   { role: 'Deep Learning & DSA', place: 'Personal learning journey', date: 'Ongoing', text: 'Building applied deep-learning projects, reading research papers, and strengthening problem-solving fundamentals with C++.', tags: ['PyTorch', 'Deep Learning', 'C++'] },
+  { role: 'AI/ML Summer Intern', place: 'MNIT Jaipur · MIIC', date: 'May – June 2026 (45 Days)', text: 'Participated in the summer internship programme with an AI/ML healthcare focus, in the AAMIH / Svaarogym project context.', tags: ['Machine Learning', 'Healthcare AI', 'Research'] },
+  { role: 'Web Development Intern', place: 'SKIT Jaipur(Inhouse Internship)', date: 'July – July 2025 (15 Days)', text: 'Participated in the summer internship programme with the college involving the Web Dev Project, and implemented a website for the service booking for the vehicles', tags: ['HTML', 'CSS', 'JavaScript','XAMPP Server', 'Render'] },
+  { role: 'AI/ML Summer Intern', place: 'MNIT Jaipur · MIIC', date: 'June – June 2025 (15 Days)', text: 'Participated in the summer internship programme with an AI/ML healthcare focus, and made heart dieases prediction model based on Logistic Regression, SVM & Random Forest', tags: ['Basic Machine Learning', 'Healthcare AI'] },
   { role: 'B.Tech · Computer Science', place: 'SKIT Jaipur', date: '2024 – 2028', text: 'Exploring the intersection of AI, software engineering, and practical problem solving while pursuing a strong academic foundation.', tags: ['CSE', 'AI/ML', 'Software'] },
+  {role: 'Student', place: 'Jayshree Periwal High School, Jaipur', date: '2011-2023', text: 'Sports Enthusiast specially football, Quizzes,  Secured 100 marks in Informatics Practices in 12th Board Exam', tags:['Coding','Football', 'Quiz', 'Chess']}
 ];
 function Experience() {
   return <section className="experience section-shell" id="experience">
