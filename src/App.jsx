@@ -157,6 +157,9 @@ function Hero() {
       <div className="actions" id="hero-actions">
         <a className="btn light" href="mailto:chandiramaniyash@gmail.com"><Icon name="mail" />Contact Me</a>
         <a className="btn teal" href="#projects">Explore Projects</a>
+        <a className="btn teal" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+    Resume ↗
+  </a>
         <a className="soc" href="https://github.com/YashChandiramani" target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" /></a>
         <a className="soc linkedin" href="https://www.linkedin.com/in/yash-chandiramani-589699352/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
         <a className="soc leetcode" href="https://leetcode.com/u/Yash_Chandiramani/" target="_blank" rel="noreferrer" aria-label="LeetCode">LC</a>
