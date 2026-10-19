@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import yashPhoto from "./assets/yash.jpg";
+import yashPhoto from "./assets/yash.png";
 
 const iconPaths = {
   github: 'M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z',
@@ -19,39 +19,98 @@ const techGroups = [
   { name: 'Tools & Platforms', items: [['Git', '240,80,50', 'git'], ['GitHub', '150,150,170', 'github'], ['Docker', '40,140,230', 'docker'], ['Jenkins', '200,70,60', 'jenkins'], ['Jupyter', '230,120,40', 'jupyter']] },
 ];
 const projects = [
-  { title: 'Event Management System', description: 'A team-built event management system with role-based access for students, faculty, organizers, and admins, backed by an Express API and MongoDB. The project also includes DevOps workflow practice.', tags: ['Node.js', 'Express', 'MongoDB', 'Docker', 'Jenkins'] },
-  { title: 'ECG Noise Analyzer', description: 'A web app that classifies ECG segments as clean or noisy and predicts noise categories. Uses continuous wavelet transform scalograms with deep-learning inference; it is a signal-quality tool, not a heart-disease diagnosis system.', tags: ['PyTorch', 'ResNet-18', '1D CNN', 'CWT', 'React', 'FastAPI'] },
-  { title: 'Student Score Predictor', description: 'A Streamlit machine-learning application using linear regression to estimate student scores from input features, with model evaluation and a simple interactive interface.', tags: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'] },
-  { title: 'Vehicle Service Booking', description: 'A web-based application designed to simplify vehicle maintenance by allowing users to book service appointments online. Users can explore available services, schedule appointments, manage their bookings, and access service-related information through a user-friendly interface.', tags: ['HTML', 'CSS', 'JavaScript', 'XAMPP','Render']},
-  { title: 'Heart Disease Prediction', description: 'A machine learning project that analyzes patient health parameters to predict the likelihood of heart disease. The model uses data preprocessing, feature analysis, and classification algorithms to generate predictions based on the provided medical attributes.', tags: ['Machine Learning', 'SVM', 'Random Forest','Logistic Regression'] },
+  {title: 'Personal Portfolio', description: 'A personal portfolio showcasing my skills, projects, and experience in Artificial Intelligence, Machine Learning, and Deep Learning. It highlights my technical expertise, projects, internship experience, and learning journey, along with links to my GitHub, LinkedIn, and coding profiles.', tags: ['React.js', 'CSS'], github: "https://github.com/YashChandiramani/Portfolio"},
+  { title: 'Event Management System', description: 'A team-built event management system with role-based access for students, faculty, organizers, and admins, backed by an Express API and MongoDB. The project also includes DevOps workflow practice.', tags: ['Node.js', 'Express', 'MongoDB', 'Docker', 'Jenkins'], github: "https://github.com/VKJAIN2006/Devops-2026-CS-F-04" },
+  { title: 'ECG Noise Analyzer', description: 'A web app that classifies ECG segments as clean or noisy and predicts noise categories. Uses continuous wavelet transform scalograms with deep-learning inference; it is a signal-quality tool, not a heart-disease diagnosis system.', tags: ['PyTorch', 'ResNet-18', '1D CNN', 'CWT', 'React', 'FastAPI'], github: "https://github.com/YashChandiramani/ECG_Noise_Analyser" },
+  { title: 'Student Score Predictor', description: 'A Streamlit machine-learning application using linear regression to estimate student scores from input features, with model evaluation and a simple interactive interface.', tags: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'], github: "" },
+  { title: 'Vehicle Service Booking', description: 'A web-based application designed to simplify vehicle maintenance by allowing users to book service appointments online. Users can explore available services, schedule appointments, manage their bookings, and access service-related information through a user-friendly interface.', tags: ['HTML', 'CSS', 'JavaScript', 'XAMPP','Render'], github: "https://github.com/YashChandiramani/WebDeveleopmentProject"},
+  { title: 'Heart Disease Prediction', description: 'A machine learning project that analyzes patient health parameters to predict the likelihood of heart disease. The model uses data preprocessing, feature analysis, and classification algorithms to generate predictions based on the provided medical attributes.', tags: ['Machine Learning', 'SVM', 'Random Forest','Logistic Regression'], github: "https://github.com/YashChandiramani/AI-ML-Project" },
 ];
+
 
 function Starfield() {
   const canvasRef = useRef(null);
+
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let stars = [], width = 0, height = 0, frame;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let stars = [];
+    let width = 0;
+    let height = 0;
+    let frame;
+
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth; height = window.innerHeight;
-      canvas.width = width * dpr; canvas.height = height * dpr;
+
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      stars = Array.from({ length: Math.round(width * height / 9000) }, () => ({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.2 + .3, a: Math.random() * .6 + .2, s: Math.random() * .02 + .004, o: Math.random() * 6.28 }));
-      draw(0);
+
+      stars = Array.from(
+        { length: Math.round(width * height / 9000) },
+        () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 1.2 + 0.3,
+          a: Math.random() * 0.6 + 0.2,
+          s: Math.random() * 0.02 + 0.004,
+          o: Math.random() * 6.28
+        })
+      );
     };
+
     const draw = (t) => {
       ctx.clearRect(0, 0, width, height);
-      const col = getComputedStyle(document.documentElement).getPropertyValue('--star').trim() || '255,255,255';
-      stars.forEach(star => { const alpha = star.a * (.6 + .4 * Math.sin(t * star.s * .05 + star.o)); ctx.fillStyle = `rgba(${col},${alpha.toFixed(3)})`; ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2); ctx.fill(); });
+
+      const col =
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--star")
+          .trim() || "255,255,255";
+
+      stars.forEach((star) => {
+        const alpha =
+          star.a * (0.6 + 0.4 * Math.sin(t * star.s * 0.05 + star.o));
+
+        ctx.fillStyle = `rgba(${col},${alpha.toFixed(3)})`;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
     };
-    const animate = (t) => { draw(t); frame = requestAnimationFrame(animate); };
-    resize(); window.addEventListener('resize', resize);
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) frame = requestAnimationFrame(animate);
-    return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(frame); };
+
+    const animate = (t) => {
+      draw(t);
+      frame = requestAnimationFrame(animate);
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      frame = requestAnimationFrame(animate);
+    } else {
+      draw(0);
+    }
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(frame);
+    };
   }, []);
+
   return <canvas id="stars" ref={canvasRef} aria-hidden="true" />;
 }
+
 
 function Header({ theme, toggleTheme }) {
   return <header>
@@ -71,14 +130,28 @@ function Hero() {
       <div className="cols">
         <div>
           <h3><Icon name="person" />About me</h3>
-          <p>I'm a Computer Science and Engineering student at SKIT Jaipur who enjoys turning machine-learning ideas into working projects. My main interests are deep learning, applied AI, and research-driven problem solving.</p>
+          <p>I'm a Computer Science and Engineering student at SKIT Jaipur who enjoys turning machine-learning ideas into working projects. My main interests are Deep Learning, applied AI, and research-driven problem solving.</p>
           <p>I build end-to-end prototypes, keep strengthening my DSA fundamentals, and like understanding the research behind the models I use.</p>
           <div className="edu"><h3><Icon name="education" />Education</h3><b>B.Tech in Computer Science and Engineering</b><span className="sub">Swami Keshvanand Institute of Technology, Jaipur</span><span className="yr">2024 – 2028 · CGPA: 9.5/10</span></div>
         </div>
         <div>
           <h3><Icon name="work" />Experience &amp; internships</h3>
-          <div className="job"><b><span className="logo" />MNIT Jaipur · MIIC Summer Internship Programme</b><p className="dt">15 May – 29 June 2026</p><ul><li>Participated in an AI/ML healthcare-focused internship programme.</li><li>Worked in the AAMIH / Svaarogym project context.</li></ul></div>
           <div className="job"><b><span className="logo" />Current focus · Deep Learning &amp; DSA</b><p className="dt">Ongoing</p><ul><li>Building applied ML/DL projects and studying research papers.</li><li>Practising problem solving with C++ and data structures.</li></ul></div>
+          <div className="job"><b><span className="logo" />MNIT Jaipur · MIIC Summer Internship Programme</b><p className="dt">15 May – 29 June 2026</p><ul><li>Participated in an AI/ML healthcare-focused internship programme.</li><li>Made a working Deep Learning Project on ECG Noise Analyser. Which classifies ECG Signals into clean and noisy signals.</li> <li>
+  Running Live at:{" "}
+  <a
+    href="https://ecg-noise-analyser.vercel.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      textDecoration: "underline",
+      color: "var(--accent)",
+      cursor: "pointer"
+    }}
+  >
+    ECG Noise Analyser
+  </a>
+</li></ul></div>
         </div>
       </div>
       <div className="actions" id="hero-actions">
@@ -118,8 +191,34 @@ function Projects() {
     <div className="section-heading reveal"><span className="eyebrow">A selection of things I’ve built</span><h2 className="display section-title">Projects</h2><p className="section-intro">Experiments, applications, and ideas turned into working projects.</p></div>
     <div className="project-grid">
       {projects.map((project, index) => <article className={`project-card reveal reveal-delay-${index % 3}`} key={project.title}>
-        <div className={`project-visual project-visual-${index + 1}`}><span className="visual-label">PROJECT / 0{index + 1}</span><span className="visual-mark">{['FSD', 'DL', 'ML', 'FSD', 'ML'][index]}</span></div>
-        <div className="project-card-content"><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div>
+        <div className={`project-visual project-visual-${index + 1}`}><span className="visual-label">PROJECT / 0{index + 1}</span><span className="visual-mark">{['FSD','FSD', 'DL', 'ML', 'FSD', 'ML'][index]}</span></div>
+        
+<div className="project-card-content">
+  <h3>{project.title}</h3>
+  <p>{project.description}</p>
+
+  <a
+    href={project.github}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="project-github"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.71 2.62 1.22 3.26.93.1-.72.39-1.22.71-1.5-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.61 5.24-5.1 5.52.4.35.76 1.03.76 2.08v3.07c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"
+      />
+    </svg>
+    View on GitHub
+  </a>
+
+  <div className="tags">
+    {project.tags.map(tag => (
+      <span className="tag" key={tag}>{tag}</span>
+    ))}
+  </div>
+</div>
+
       </article>)}
     </div>
   </section>;
